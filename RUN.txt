@@ -1,0 +1,15 @@
+vlib work
+vlog SPI_slave.v RAM.v SPI_wrapper.v SPI_testbench.v
+vsim -voptargs=+acc work.SPI_tb
+add wave *
+add wave -position insertpoint  \
+sim:/SPI_tb/DUT/RAM_instance/wr_addr \
+sim:/SPI_tb/DUT/RAM_instance/rd_addr \
+sim:/SPI_tb/DUT/slave_instance/read_diff \
+sim:/SPI_tb/DUT/slave_instance/rx_valid \
+sim:/SPI_tb/DUT/RAM_instance/tx_valid \
+sim:/SPI_tb/DUT/slave_instance/rx_data \
+sim:/SPI_tb/DUT/slave_instance/MISO_counter \
+sim:/SPI_tb/DUT/slave_instance/MOSI_counter \
+sim:/SPI_tb/DUT/RAM_instance/RAM
+run -all
